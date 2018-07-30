@@ -1,7 +1,11 @@
 #!/bin/sh
 
 max_port=7005
-ip=`hostname -i`
+
+ip="${2:-$IP}"
+if [ -z "$IP" ]; then
+  ip=`hostname -i`
+fi
 
 for port in `seq 7000 $max_port`; do
   mkdir -p /usr/src/redis/conf/${port}
